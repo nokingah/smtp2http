@@ -30,9 +30,9 @@ smtp.createServer(function (connection) {
                     }
                 }
 
-                var to = /\S+@\S+\.\S{2,}/.exec(headers.to)
+                var to = /<?(\S+@\S+\.\S{2,})>?/.exec(headers.to)
                 if (to) {
-                    to = to[0]
+                    to = to[1]
                     var hostName = to.match(/@(.*)$/)[1],
                         host = hosts[hostName]
                     if (host) {
